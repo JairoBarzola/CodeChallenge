@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ZoluxionesCodeChallenge</string>
+    <string name="user">Usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="enter">Ingresar</string>
+    <string name="entering">Ingresando...</string>
+    <string name="release_movie">Lanzamiento: %1$s</string>
+</resources>
