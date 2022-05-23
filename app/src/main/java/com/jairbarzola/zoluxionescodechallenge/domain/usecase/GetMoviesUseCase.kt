@@ -6,6 +6,7 @@ import com.jairbarzola.zoluxionescodechallenge.domain.util.Failure
 import com.jairbarzola.zoluxionescodechallenge.domain.util.ResultType
 
 class GetMoviesUseCase (private val movieRepository: MovieRepository) {
-    suspend operator fun invoke(page:Int): ResultType<ListMovieResponse, Failure> =
-        movieRepository.getMovies(page)
+    suspend operator fun invoke(page:Int): ResultType<ListMovieResponse, Failure> {
+        return  movieRepository.getMovies(page)
+    }
 }

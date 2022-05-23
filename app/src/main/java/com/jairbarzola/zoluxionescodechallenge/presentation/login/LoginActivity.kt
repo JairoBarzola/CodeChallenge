@@ -11,24 +11,26 @@ import com.jairbarzola.zoluxionescodechallenge.data.repository.LoginRepositoryIm
 import com.jairbarzola.zoluxionescodechallenge.data.service.LoginDataSourceImpl
 import com.jairbarzola.zoluxionescodechallenge.domain.usecase.VerifyCredentialsUseCase
 import com.jairbarzola.zoluxionescodechallenge.presentation.home.HomeActivity
+import com.jairbarzola.zoluxionescodechallenge.util.getViewModel
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
-    val viewModel: LoginViewModel by lazy {
-        LoginViewModel(
-            VerifyCredentialsUseCase(
-                LoginRepositoryImpl(
-                    LoginDataSourceImpl()
-                )
-            )
-        )
-    }
+    lateinit var viewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        viewModel = getViewModel {
+            LoginViewModel(
+                VerifyCredentialsUseCase(
+                    LoginRepositoryImpl(
+                        LoginDataSourceImpl()
+                    )
+                )
+            )
+        }
         setupObservers()
         setupView()
     }
