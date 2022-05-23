@@ -33,26 +33,15 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+        val repositoryImpl =  MovieRepositoryImpl(
+            MovieDataSourceImpl(),
+            CodeChallengeDataBase.getDatabase(this).getMovieDao()
+        )
         viewModel = getViewModel {
             HomeViewModel(
-                GetMoviesUseCase(
-                    MovieRepositoryImpl(
-                        MovieDataSourceImpl(),
-                        CodeChallengeDataBase.getDatabase(this).getMovieDao()
-                    )
-                ),
-                SaveMoviesUseCase(
-                    MovieRepositoryImpl(
-                        MovieDataSourceImpl(),
-                        CodeChallengeDataBase.getDatabase(this).getMovieDao()
-                    )
-                ),
-                GetLocalMoviesUseCase(
-                    MovieRepositoryImpl(
-                        MovieDataSourceImpl(),
-                        CodeChallengeDataBase.getDatabase(this).getMovieDao()
-                    )
-                )
+                GetMoviesUseCase(repositoryImpl),
+                SaveMoviesUseCase(repositoryImpl),
+                GetLocalMoviesUseCase(repositoryImpl)
             )
         }
         setupUI()
